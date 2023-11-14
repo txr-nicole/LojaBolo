@@ -1,7 +1,7 @@
-let dados=[ {id:1, nome:"Bolo de Creme", preco:29.90 },
-            {id:2, nome:"Bolo de Brigadeiro", preco:39.90 },
-            {id:3, nome:"Bolo de Coco", preco:49.90 },
-            {id:4, nome:"Cuca de Chocolate", preco:59.90 },  ]
+let dados=[ {id:1, nome:"Bolo de Creme", preco:29.90,img: "./img/cremee_choco.jpg",},
+            {id:2, nome:"Bolo de Brigadeiro", preco:39.90, img: "./img/brigadeiro_camadas.png", },
+            {id:3, nome:"Bolo de Coco", preco:49.90, img: "./img/coco.jpeg",},
+            {id:4, nome:"Cuca de Chocolate", preco:59.90,img: "./img/cuca_choco.jpg" },  ]
 let carrinho = []
 //usado na função compra
 
@@ -61,16 +61,44 @@ function adicionaCarrinho(qtd, posiçãoDados) {
     for (let i = 0; i < carrinho.length; i++) {
       if (carrinho[i].id == cloneBolo.id) {
         carrinho[i] = cloneBolo;
-        console.log(carrinho);
       } else {
         carrinho.push(cloneBolo);
-        console.log(carrinho);
       }
     }
     if (carrinho.length == 0) {
       carrinho.push(cloneBolo);
-      console.log(carrinho);
     }
+
 }
 
-
+// Não funcionando mais
+// Adicionar carrinho no session e puxar por lá depois
+function adicionaItem() {
+  let corpo = document.querySelector("#corpo")
+  for (let i = 0; i <= carrinho.length; i++) {
+    corpo.innerHTML += `<tr>
+    <th scope="row">
+      <div class="d-flex align-items-center">
+        <img src="${carrinho[i].img}" class="img-fluid rounded-3"
+          style="width: 120px;" alt="Book">
+        <div class="flex-column ms-4">
+          <p class="mb-2">${carrinho[i].nome}</p>
+        </div>
+      </div>
+    </th>
+    
+    <td class="align-middle">
+      <div class="d-flex flex-row">
+        <input id="form1" min="0" name="quantity" value=${carrinho[i].qtd} type="number"
+          class="form-control form-control-sm" style="width: 50px;" />
+      </div>
+    </td>
+    <td class="align-middle">
+      <p class="mb-0" style="font-weight: 500;">R$${carrinho[i].preco}</p>
+    </td>
+  </tr>
+  `
+  }
+    
+    
+  }
