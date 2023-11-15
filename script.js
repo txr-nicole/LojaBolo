@@ -89,10 +89,8 @@ function atualizaCarrinho() {
     cart[i].qtd = qtd
   }
   sessionStorage.setItem("cart", JSON.stringify(cart));
+  atualizaValores();
 }
-
-// Não funcionando mais
-// Adicionar carrinho no session e puxar por lá depois
 function adicionaItem() {
   console.log("Chamou");
   let cart = JSON.parse(sessionStorage.getItem("cart"))
@@ -123,5 +121,21 @@ function adicionaItem() {
     </td>
   </tr>
   `;
+  atualizaValores();
   }
+}
+function atualizaValores() {
+  let cart = JSON.parse(sessionStorage.getItem("cart"));
+  let tax = 10
+  let subTotalE = document.querySelector("#subTotal")
+  let totalTaxE = document.querySelector("#totalTax");
+  let checkoutE = document.querySelector("#checkout");
+  let vFinal = 0
+  for (let i = 0; i < cart.length; i++) {
+    vFinal += (cart[i].preco * parseInt(cart[i].qtd))
+  }
+  subTotalE.innerHTML = `R$${vFinal.toFixed(2)}`;
+  totalTaxE.innerHTML = `R$${(vFinal + tax).toFixed(2)}`
+  checkoutE.innerHTML = `R$${(vFinal + tax).toFixed(2)}`;
+  
 }
