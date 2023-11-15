@@ -2,15 +2,23 @@ let dados=[ {id:1, nome:"Bolo de Creme", preco:29.90,img: "./img/cremee_choco.jp
             {id:2, nome:"Bolo de Brigadeiro", preco:39.90, img: "./img/brigadeiro_camadas.png", },
             {id:3, nome:"Bolo de Coco", preco:49.90, img: "./img/coco.jpeg",},
             {id:4, nome:"Cuca de Chocolate", preco:59.90,img: "./img/cuca_choco.jpg" },  ]
-let carrinho = []
+
 //usado na função compra
 
 function insereDados(){
     let bd = JSON.stringify(dados) // transformamos em json e passamos para um variavel 
     sessionStorage.setItem("banco", bd)  // enviamos para a session
 }
+function insereCarrinho() {
+  let carrinho = [];
+  let cart = JSON.stringify(carrinho)
+  if (sessionStorage.getItem("cart") == null) {
+    sessionStorage.setItem("cart", cart);
+  }
+}
 
 insereDados()
+insereCarrinho()
 
 
 function compra1(){
@@ -56,49 +64,64 @@ function compra4(){
 
 
 function adicionaCarrinho(qtd, posiçãoDados) {
+    let cart = JSON.parse(sessionStorage.getItem("cart"));
     let cloneBolo = dados[posiçãoDados];
     cloneBolo.qtd = qtd;
-    for (let i = 0; i < carrinho.length; i++) {
-      if (carrinho[i].id == cloneBolo.id) {
-        carrinho[i] = cloneBolo;
+    for (let i = 0; i < cart.length; i++) {
+      if (cart[i].id == cloneBolo.id) {
+        cart[i] = cloneBolo;
+        break
       } else {
-        carrinho.push(cloneBolo);
+        cart.push(cloneBolo);
+        break
       }
     }
-    if (carrinho.length == 0) {
-      carrinho.push(cloneBolo);
+    if (cart.length == 0) {
+      cart.push(cloneBolo);
     }
 
+    sessionStorage.setItem("cart", JSON.stringify(cart))
+}
+function atualizaCarrinho() {
+  let cart = JSON.parse(sessionStorage.getItem("cart"));
+  for (let i = 0; i < cart.length; i++) {
+    let qtd = document.querySelector(`#form${cart[i].id}`).value
+    cart[i].qtd = qtd
+  }
+  sessionStorage.setItem("cart", JSON.stringify(cart));
 }
 
 // Não funcionando mais
 // Adicionar carrinho no session e puxar por lá depois
 function adicionaItem() {
+  console.log("Chamou");
+  let cart = JSON.parse(sessionStorage.getItem("cart"))
   let corpo = document.querySelector("#corpo")
-  for (let i = 0; i <= carrinho.length; i++) {
-    corpo.innerHTML += `<tr>
-    <th scope="row">
+  for (let i = 0; i <= cart.length; i++) {
+    corpo.innerHTML += `<tr data-id="${cart[i].id}">
+    <th scope="row" >
       <div class="d-flex align-items-center">
-        <img src="${carrinho[i].img}" class="img-fluid rounded-3"
+        <img src="${cart[i].img}" class="img-fluid rounded-3"
           style="width: 120px;" alt="Book">
         <div class="flex-column ms-4">
-          <p class="mb-2">${carrinho[i].nome}</p>
+          <p class="mb-2 ml-2">${cart[i].nome}</p>
         </div>
       </div>
     </th>
     
     <td class="align-middle">
       <div class="d-flex flex-row">
-        <input id="form1" min="0" name="quantity" value=${carrinho[i].qtd} type="number"
+        <input id="form${cart[i].id}" min="0" name="quantity" value=${cart[i].qtd} type="number"
           class="form-control form-control-sm" style="width: 50px;" />
       </div>
     </td>
     <td class="align-middle">
-      <p class="mb-0" style="font-weight: 500;">R$${carrinho[i].preco}</p>
+      <p class="mb-0" style="font-weight: 500;">R$${cart[i].preco}</p>
+    </td>
+    <td class="align-middle">
+      <button class="btn btn-light" onclick="atualizaCarrinho()">Atualizar</button>
     </td>
   </tr>
-  `
+  `;
   }
-    
-    
-  }
+}
