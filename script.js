@@ -67,21 +67,22 @@ function adicionaCarrinho(qtd, posiçãoDados) {
     let cart = JSON.parse(sessionStorage.getItem("cart"));
     let cloneBolo = dados[posiçãoDados];
     cloneBolo.qtd = qtd;
-    for (let i = 0; i < cart.length; i++) {
-      if (cart[i].id == cloneBolo.id) {
-        cart[i] = cloneBolo;
-        break
-      } else {
-        cart.push(cloneBolo);
-        break
-      }
-    }
     if (cart.length == 0) {
       cart.push(cloneBolo);
+    } else {
+        resultado = cart.find((valor)=> valor.id === cloneBolo.id)
+        if (!resultado) {
+          cart.push(cloneBolo);
+        } else {
+          let index = cart.findIndex(item => item == resultado)
+          cart[index] = cloneBolo
+        }
+      }
+      
+      sessionStorage.setItem("cart", JSON.stringify(cart))
     }
 
-    sessionStorage.setItem("cart", JSON.stringify(cart))
-}
+
 function atualizaCarrinho() {
   let cart = JSON.parse(sessionStorage.getItem("cart"));
   for (let i = 0; i < cart.length; i++) {
