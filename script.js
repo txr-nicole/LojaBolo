@@ -69,6 +69,8 @@ function adicionaCarrinho(qtd, posiçãoDados) {
     cloneBolo.qtd = qtd;
     if (cart.length == 0) {
       cart.push(cloneBolo);
+    } else if(cloneBolo.qtd == ""){
+      
     } else {
         resultado = cart.find((valor)=> valor.id === cloneBolo.id)
         if (!resultado) {
@@ -86,8 +88,13 @@ function adicionaCarrinho(qtd, posiçãoDados) {
 function atualizaCarrinho() {
   let cart = JSON.parse(sessionStorage.getItem("cart"));
   for (let i = 0; i < cart.length; i++) {
-    let qtd = document.querySelector(`#form${cart[i].id}`).value
-    cart[i].qtd = qtd
+    let qtd = document.querySelector(`#form${cart[i].id}`)
+    if (qtd.value == 0){
+      cart.splice(i,1)
+      qtd.parentNode.parentNode.parentNode.remove()
+    } else{
+      cart[i].qtd = qtd.value
+    }
   }
   sessionStorage.setItem("cart", JSON.stringify(cart));
   atualizaValores();
