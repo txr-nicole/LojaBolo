@@ -113,14 +113,6 @@ function compra6(){
 
 }
 
-//function compra(){
- // let qtd = document.getElementById('qtd').value 
- // let total = qtd * dados[0].preco
- // alert("O Bolo foi adicionado ao carrinho!"  + "\n Boas Compras Benzinho")
- // adicionaCarrinho(qtd, 0)
-//}
-
-
 
  function adicionaCarrinho(qtd, posiçãoDados) {
      let cart = JSON.parse(sessionStorage.getItem("cart"));
@@ -142,19 +134,6 @@ function compra6(){
       
       sessionStorage.setItem("cart", JSON.stringify(cart))
      }
-
-
-                                                              // quantidade colocada no carrinho sendo maior ou igual um 
-                                                              // trocando as condições
-//       if (cart.find((valor)=> valor.id === cloneBolo.id && qtd >= 1)) {
-//         let index = cart.findIndex(item => item == resultado)
-//         cart[index] = cloneBolo
-        
-//       } else {
-//         cart.push(cloneBolo);
-//       }
-//     }
-    
 
 function atualizaCarrinho() {
   let cart = JSON.parse(sessionStorage.getItem("cart"));
