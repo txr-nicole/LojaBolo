@@ -1,7 +1,9 @@
 let dados=[ {id:1, nome:"Bolo de Creme", preco:29.90,img: "./img/cremee_choco.jpg",},
             {id:2, nome:"Bolo de Brigadeiro", preco:39.90, img: "./img/brigadeiro_camadas.png", },
-            {id:3, nome:"Bolo de Coco", preco:49.90, img: "./img/coco.jpeg",},
-            {id:4, nome:"Cuca de Chocolate", preco:59.90,img: "./img/cuca_choco.jpg" },  ]
+            {id:3, nome:"Bolo Bombom", preco:49.90, img: "./img/bombom_uva.jpg",},
+            {id:4, nome:"Cuca de Chocolate", preco:59.90,img: "./img/cuca_choco.jpg" },
+            {id:5, nome:"Bolo Chocolate B&B", preco:39.90,img: "./img/brigadeiro.png" },
+            {id:6, nome:"Bolo Kinder Bueno", preco:59.90,img: "./img/kinder.jpg" },  ]
 
 //usado na função compra
 
@@ -24,66 +26,135 @@ insereCarrinho()
 function compra1(){
     let qtd1 = document.getElementById('qtd1').value 
     
+    if (qtd1 == null || qtd1 == 0){
+      alert("Nenhum produto da Boleria Benzinho foi adicionado no carrinho, verifique a quantidade")
+    } 
+    else{
+       alert("O Bolo de Creme foi adicionado ao carrinho!" + "\n Boas Compras Benzinho")
+    }
+
     let total = qtd1 * dados[0].preco
-    alert(total)
+   
     adicionaCarrinho(qtd1, 0)
-  
     
 }
 
 function compra2(){
     let qtd2 = document.getElementById('qtd2').value 
-    
+
+    if (qtd2 == null || qtd2 == 0){
+      alert("Nenhum produto da Boleria Benzinho foi adicionado no carrinho, verifique a quantidade")
+    } 
+    else{
+      alert("O Bolo de Brigadeiro foi adicionado ao carrinho!"+ "\n Boas Compras Benzinho" )
+    }
+
     let total = qtd2 * dados[1].preco
-    alert(total)
     adicionaCarrinho(qtd2, 1)
-  
     
 }
 
 function compra3(){
     let qtd3 = document.getElementById('qtd3').value 
     
-    let total = qtd3 * dados[2].preco
-    alert(total)
+    if (qtd3 == null || qtd3 == 0){
+      alert("Nenhum produto da Boleria Benzinho foi adicionado no carrinho, verifique a quantidade")
+    } 
+    else{
+      alert("O Bolo Bombom foi adicionado ao carrinho!"  + "\n Boas Compras Benzinho")
+    }
+
+      let total = qtd3 * dados[2].preco
     adicionaCarrinho(qtd3, 2)
-  
     
 }
 
 function compra4(){
     let qtd4 = document.getElementById('qtd4').value 
     
+    if (qtd4 == null || qtd4 == 0){
+      alert("Nenhum produto da Boleria Benzinho foi adicionado no carrinho, verifique a quantidade")
+    } 
+    else{
+      alert(" A Cuca de chocolate foi adicionado ao carrinho!"  + "\n Boas Compras Benzinho")
+    }
+
     let total = qtd4 * dados[3].preco
-    alert(total)
     adicionaCarrinho(qtd4, 3)
-  
     
 }
 
+function compra5(){
+  let qtd5 = document.getElementById('qtd5').value 
+  
+  if (qtd5 == null || qtd5 == 0){
+    alert("Nenhum produto da Boleria Benzinho foi adicionado no carrinho, verifique a quantidade")
+  } 
+  else{
+    alert("O Bolo de chocolate B&B foi adicionado ao carrinho!"  + "\n Boas Compras Benzinho")
+  }
+
+  let total = qtd5 * dados[4].preco
+  adicionaCarrinho(qtd5, 4)
+ 
+}
+function compra6(){
+  let qtd6 = document.getElementById('qtd6').value 
+  
+  if (qtd6 == null || qtd6 == 0){
+    alert("Nenhum produto da Boleria Benzinho foi adicionado no carrinho, verifique a quantidade")
+  } 
+  else{
+    alert("O Bolo Kinder Bueno foi adicionado ao carrinho!"  + "\n Boas Compras Benzinho")
+  }
+
+  let total = qtd6 * dados[5].preco
+  adicionaCarrinho(qtd6, 5)
+
+}
+
+//function compra(){
+ // let qtd = document.getElementById('qtd').value 
+ // let total = qtd * dados[0].preco
+ // alert("O Bolo foi adicionado ao carrinho!"  + "\n Boas Compras Benzinho")
+ // adicionaCarrinho(qtd, 0)
+//}
 
 
-function adicionaCarrinho(qtd, posiçãoDados) {
-    let cart = JSON.parse(sessionStorage.getItem("cart"));
-    let cloneBolo = dados[posiçãoDados];
-    cloneBolo.qtd = qtd;
-    if (cart.length == 0) {
-      cart.push(cloneBolo);
-    } else if(cloneBolo.qtd == ""){
+
+ function adicionaCarrinho(qtd, posiçãoDados) {
+     let cart = JSON.parse(sessionStorage.getItem("cart"));
+     let cloneBolo = dados[posiçãoDados];
+     cloneBolo.qtd = qtd;
+     if (cart.length == 0) {
+       cart.push(cloneBolo);
+     } else if(cloneBolo.qtd == ""){
       
-    } else {
-        resultado = cart.find((valor)=> valor.id === cloneBolo.id)
-        if (!resultado) {
-          cart.push(cloneBolo);
-        } else {
-          let index = cart.findIndex(item => item == resultado)
-          cart[index] = cloneBolo
-        }
-      }
+     } else {
+         resultado = cart.find((valor)=> valor.id === cloneBolo.id)
+         if (!resultado) {
+           cart.push(cloneBolo);
+         } else {
+           let index = cart.findIndex(item => item == resultado)
+           cart[index] = cloneBolo
+         }
+       }
       
       sessionStorage.setItem("cart", JSON.stringify(cart))
-    }
+     }
 
+
+                                                              // quantidade colocada no carrinho sendo maior ou igual um 
+                                                              // trocando as condições
+//       if (cart.find((valor)=> valor.id === cloneBolo.id && qtd >= 1)) {
+//         let index = cart.findIndex(item => item == resultado)
+//         cart[index] = cloneBolo
+        
+//       } else {
+//         cart.push(cloneBolo);
+//       }
+//     }
+    
 
 function atualizaCarrinho() {
   let cart = JSON.parse(sessionStorage.getItem("cart"));
