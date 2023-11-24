@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <!-- FONTES-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Agbalumo&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="./img/iconben.png" />
+    <title>Login Benzinho</title>
+</head>
+<body>
+    
+<div class="container-fluid centraliza">
+    <div class="card vidro" style="width: 44rem;">
+    <div class="card-body " >
+        <h5 class="card-title">Login</h5>
+        <form>
+            <div class="form-group">
+                <label for="email">Digite seu email:</label>
+                <input type="email" class="form-control" id="email" aria-describedby="emailHelp"
+                    placeholder="contato@email.com.br" required="required">
+            </div>
+    
+            <div class="form-group">
+                <label for="senha">Senha:</label>
+                <input type="password" class="form-control" id="senha" placeholder="Senha">
+            </div>
+    
+            <button class="pushable btn btn-info" type="button" onclick="fazerLogin()">
+                <span class="edge"></span>
+                <span class="front">
+                    Enviar
+                </span>
+            </button>
+            <a class="btn btn-light" href="./cadastro.html">Não possui cadastro?</a>
+        </form>
+        
+    </div>
+</div>
+</div>
+
+<style>
+
+*{font-family:Agbalumo;}
+
+.centraliza {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-image: url(./img/wave-haikei.svg);
+  background-size: cover;
+}
+.vidro{
+  /* From https://css.glass */
+background: #fdb2bca1;
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(5px);
+-webkit-backdrop-filter: blur(5px);
+border: 1px solid #FDB2BC;
+}
+
+
+
+</style>
+<script src="login.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+    integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+    crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+    integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+    crossorigin="anonymous"></script>
+</body>
+</html>
