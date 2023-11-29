@@ -19,9 +19,13 @@ function fazerLogin(){
     else{
         alert("Não encontrado verifique seus dados")
     }
-
-
-
-   
-
 }
+
+function verificaLogin() {
+    let login = JSON.parse(sessionStorage.getItem("LoginAtual"));
+    let bemvindo = document.getElementById("bemvindo");
+    if (login != null){
+        bemvindo.innerHTML = `Bem vindo, ${login.dadosBasicos.nome}`;
+    }
+}
+verificaLogin();
